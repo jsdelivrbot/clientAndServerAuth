@@ -14,15 +14,20 @@ const cors = require('cors');
 app.use(cors());
 
 
-app.post('/new', function(req, res){
-new companyList({
+app.post('/posts', function(req, res){
+new CRUDList({
 	//name: req.body.name,
 	//age: req.body.age
 
-id: req.body.id,
+id: Math.random().toString(36).slice(2),
     title: req.body.title,
     categories: req.body.categories,
     content: req.body.content
+
+// id: 1,
+// title: "joker ",
+// categories: "hey hey",
+// content: "hey hey hey"
 
 
 }).save(function(err, doc){
@@ -34,45 +39,41 @@ id: req.body.id,
  });
 
 
-app.get('/getdata', function(req, res, next) {
+// app.get('/getdata', function(req, res, next) {
 
-CRUDList.model('CRUDcollectionTest').find(function(err, users){
+// CRUDList.model('CRUDcollectionTest').find(function(err, users){
 
-if (err) {
-      console.log(err);
-      return res.send(500, 'Something Went wrong with Retrieving data');
-    } else {
+// if (err) {
+//       console.log(err);
+//       return res.send(500, 'Something Went wrong with Retrieving data');
+//     } else {
 
 
-    for (var i = 0; i < users.length; i++) {
-        var name = users[i].name;
+//     for (var i = 0; i < users.length; i++) {
+//         var name = users[i].name;
         
-        console.log(name);
+//         console.log(name);
 
-        //var price = res[users][i].Price;
-        // var badge = document.createElement('div');
-        // badge.className = 'badge';
-        // badge.innerHTML =
-        //     '<h1>' + name + '</h1>' +
-        //     '<div class="options-only-phone">';
-        //I gave the div the same ID's as the userss in the object for ease
-        //document.getElementById(users).appendChild(badge);
+//         //var price = res[users][i].Price;
+//         // var badge = document.createElement('div');
+//         // badge.className = 'badge';
+//         // badge.innerHTML =
+//         //     '<h1>' + name + '</h1>' +
+//         //     '<div class="options-only-phone">';
+//         //I gave the div the same ID's as the userss in the object for ease
+//         //document.getElementById(users).appendChild(badge);
  
-    }
-}
-
-
-
-
+//     }
+// }
 	
-});
+// });
 
-});
-
-
+// });
 
 
-app.get('/posts', function(req, res) {
+
+
+app.get('/posts/', function(req, res) {
 
 CRUDList.model('CRUDcollectionTest').find({}, function(err, users){
 	res.send(users);
@@ -83,11 +84,23 @@ CRUDList.model('CRUDcollectionTest').find({}, function(err, users){
 
 app.get('/posts/:id', function(req, res) {
 
-CRUDList.model('CRUDcollectionTest').find({_id: req.params.id}, function(err, users){
+CRUDList.model('CRUDcollectionTest').findOne({id: req.params.id}, function(err, users){
 	res.send(users);
 });
 
 });
+
+
+app.delete('/posts/:id', function(req, res){
+
+
+CRUDList.model('CRUDcollectionTest').deleteOne({id: req.params.id}, function(err, users){
+	res.send(users);
+});
+
+
+});
+
 
 
 app.get('/', function(req, res){
@@ -103,3 +116,17 @@ app.get('/', function(req, res){
 app.listen(PORT, function() {
     console.log('app connected and listening on ' + PORT);
 });
+
+
+
+
+
+
+
+// app.get('/posts/', function(req, res) {
+
+// CRUDList.model('CRUDcollectionTest').find({}, function(err, users){
+// 	res.send(users);
+// });
+
+// });

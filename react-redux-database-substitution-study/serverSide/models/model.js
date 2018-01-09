@@ -8,7 +8,7 @@ db.on('error', function(){
 	console.log("Mongodb connection error!!!");
 	});
 db.on('open', function(){
-	console.log('db connected');
+	console.log('db is super connected');
 });
 
 var Schema = mongoose.Schema;
@@ -17,7 +17,7 @@ var Schema = mongoose.Schema;
 //this is like the skeleton of your db collection
 
 var testSchema = new Schema({
-	id: Number,
+	id: String,
 	title: String,
 	categories: String,
 	content: String

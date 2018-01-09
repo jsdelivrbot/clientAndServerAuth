@@ -18,9 +18,13 @@ renderPosts(){
 //		return( <div> <li> {this.postData.categories} </li> </div>);
 //});
 
-return _.map(this.props.posts, (postData)=> {
-	return( <div> <Link to={`/posts/${postData.id}`}> <li key={postData.id}> {postData.title} </li> </Link> </div>); 
+ return _.map(this.props.posts, (postData)=> {
+
+
+	return( <div> <Link to={`/posts/${postData.id}`}> <li key={Math.random().toString(36).slice(2)}> {postData.title} </li> </Link> </div>); 
 });
+
+//return (<div> <li><Link to="/posts/new" > test! </Link></li></div>);
 
 }
 

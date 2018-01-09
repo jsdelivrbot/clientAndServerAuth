@@ -1,3 +1,7 @@
 a {
 	margin-left: 5px;
 }
+
+li{
+list-style: none;
+}
