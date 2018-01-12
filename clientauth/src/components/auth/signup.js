@@ -81,8 +81,8 @@ function validate(formProps){
 const errors = {};
 
 //console.log(formProps);
-if (!formProps.username){
-  errors.username = "Can't leave username blank";
+if (!formProps.username || formProps.username.length < 3){
+  errors.username = "Username must be at least 3 characters";
 }
 if (!formProps.email){
 	errors.email = 'Please enter an email';
