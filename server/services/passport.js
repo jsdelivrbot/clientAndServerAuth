@@ -21,6 +21,7 @@ user.comparePassword(password, function(err, isMatch){
 	return done(null, user);
 });
 });
+
 });
 //setup options for JWT strategy
 const jwtOptions ={

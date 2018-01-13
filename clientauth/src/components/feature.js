@@ -7,6 +7,10 @@ import {connect} from 'react-redux';
 
 import Other from './otherFeature';
 
+//import Test from '../actions/index';
+
+const idk = localStorage.getItem('username');
+console.log("password is: " + idk);
 
 class Feature extends Component{
 	static propTypes = {
@@ -21,10 +25,10 @@ class Feature extends Component{
 	render(){
 		return(
 <div>
-<div> Welcome! {this.props.message} THIS WILL BE THE MAIN PAGE </div>
+<div> Welcome! {idk} THIS WILL BE THE MAIN PAGE </div>
 
 <Other/>
-
+ 
 </div> 
 			);
 	}
@@ -32,7 +36,10 @@ class Feature extends Component{
 
 function mapStateToProps(state){
 
-return {message:state.auth.mess};
+return {
+  message:state.auth.username
+
+};
 }
 
 export default connect(mapStateToProps, actions)(Feature);

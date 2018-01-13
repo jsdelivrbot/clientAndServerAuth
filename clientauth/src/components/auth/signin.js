@@ -51,12 +51,11 @@ if (label === "Password"){
 
   render() {
   	//comes from redux form
-const {handleSubmit, fields: {username, email, password}} = this.props; 
+const {handleSubmit, fields: {email, password}} = this.props; 
     
     return (
 
       <form onSubmit={handleSubmit(this.handleFormValues.bind(this))}>
-      <Field name="username" component={this.renderInput} label="Username" />
         <Field name="email" component={this.renderInput} label="Email" />
         <Field name="password" component={this.renderInput} label="Password" />
         {this.renderAlert()}
@@ -78,7 +77,7 @@ function mapStateToProps(state){
 
 export default reduxForm({
   form: 'signin',
-  fields: ['username', 'email', 'password']
+  fields: ['email', 'password']
 })(
   connect(mapStateToProps, actions)(Signin)
 );

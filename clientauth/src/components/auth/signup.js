@@ -5,12 +5,17 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
 class SignUp extends Component{
-	handleFormSubmit(formProps){
+	//handleFormSubmit(formProps){
 //call action creator to sign up the user!
+//console.log(formProps);
+//this.props.signupUser(formProps);
 
-this.props.signupUser(formProps);
+//	}
 
-	}
+  handleFormSubmit({username, email, password}){
+   console.log(username, email, password);
+  this.props.signupUser({username, email, password}, this.props.history);
+  };
 
   renderInput({ label, ...field }) {
 //  	console.log(label, ...field);
@@ -56,7 +61,7 @@ renderAlert(){
 
         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
 
-        <Field name="username" component={this.renderInput} label="User Name" />
+        <Field name="username" component={this.renderInput} label="Username" />
         
         <Field name="email" component={this.renderInput} label="Email" />
         
